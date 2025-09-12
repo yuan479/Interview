@@ -1,0 +1,76 @@
+<!-- 基础节流 -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" id="inputsearch" placeholder="基础节流">
+
+    <script>
+        /*  function throttle(func, wait) {
+             // 闭包保存上一次执行的时间戳（初始为0，确保第一次触发立即执行）
+             let lastTime = 0;
+             // 包装函数：接收事件触发时的参数（如事件对象e）
+             return function (...args) {
+                 // 1. 获取当前时间戳（毫秒，如1699999999999）
+                 const nowTime = Date.now();
+                 // 2. 核心判断：当前时间 - 上次执行时间 ≥ 间隔时间 → 执行函数
+                 if (nowTime - lastTime >= wait) {
+                     // 绑定this（指向触发事件的DOM元素，如滚动时的window）
+                     func.apply(this, args);
+                     // 3. 更新上次执行时间为当前时间（重置间隔）
+                     lastTime = nowTime;
+                 }
+                 // 否则：间隔未到，不执行
+             };
+         }
+         const inputEvent = document.getElementById('inputsearch')
+         // 测试：滚动事件节流（每300ms打印一次滚动位置）
+         inputEvent.addEventListener('input', throttle(function (e) {
+             console.log('当前输入内容：', e.target.value);
+         }, 1000)); */
+
+        /* const inputEvent = document.getElementById('inputsearch')
+        
+        inputEvent.addEventListener('input', throttle((e) => {
+            console.log('当前输入内容：', e.target.value);
+        }, 1000))
+        
+        function throttle(func, wait) {
+            let lastTime = 0
+            return function (...args) {
+                const nowTime = Date.now()
+                if (nowTime - lastTime >= wait) {
+                    func.apply(this, args)
+                    lastTime = nowTime
+                }
+            }
+        } */
+
+        const inputsearch = document.getElementById('inputsearch')
+        inputsearch.addEventListener('input',throttle((e)=>{
+            console.log(e.target.value)
+        },1000)
+        )
+
+        function throttle(func,wait){
+            let lastTime = 0
+            return function(...args){
+                const nowTime =Date.now()
+                if(nowTime-lastTime>=wait){
+                    func.apply(this,args)
+                    lastTime = nowTime
+                }
+            }
+        }
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">点击我</button>
+    <script>
+  /*       function throttle(func, wait) {
+  // 闭包保存定时器ID（初始为null，标记无活跃定时器）
+  let timerId = null;
+
+  return function (...args) {
+    const context = this; // 保存触发事件的DOM元素this
+
+    // 1. 若没有定时器，说明当前可设置新定时器
+    if (!timerId) {
+      // 2. 设置定时器，延迟wait毫秒后执行
+      timerId = setTimeout(() => {
+        // 3. 执行目标函数，绑定this和参数
+        func.apply(context, args);
+        // 4. 执行后清除定时器（重置状态，允许下次触发设置新定时器）
+        timerId = null;
+      }, wait);
+    }
+    // 否则：已有定时器，说明间隔内已安排执行，跳过
+  };
+}
+
+// 测试：按钮点击节流（每1000ms只能执行一次，最后一次点击会补执行）
+const btn = document.getElementById('btn');
+btn.addEventListener('click', throttle(function (e) {
+  console.log('按钮点击执行（定时器版）', e);
+}, 1000)); */
+/* const btn = document.getElementById('btn')
+btn.addEventListener('click',throttle(function(e){
+    console.log('按钮点击执行（定时器版）', e);
+},1000))
+
+function throttle(func,wait){
+    let timeId = null
+    return function(...args){
+        if(!timeId){
+            timeId = setTimeout(()=>{
+                func.apply(this,args)
+                timeId = null
+            },wait)
+        }
+    }
+} */
+    </script>
+</body>
+</html>
