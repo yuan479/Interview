@@ -1,0 +1,77 @@
+<!-- 添加this绑定 -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="btn">点击我</button>
+
+    <script>
+        /*         // 目标函数：需要用到this（按钮元素）和事件对象e
+                function handleClick(e) {
+                    console.log('按钮被点击了');
+                    console.log('this指向按钮：', this); // 期望this是按钮元素
+                    console.log('事件对象：', e); // 期望拿到事件对象
+                }
+        
+                // 防抖函数（优化版：处理this和参数）
+                function debounce(func, wait) {
+                    let timerId = null;
+        
+                    // 包装函数：这里的this和args会自动接收事件触发时的上下文
+                    return function (...args) {
+                        // 保存当前的this和args（因为setTimeout里的this默认是window）
+                        const context = this;
+                        const params = args;
+        
+                        clearTimeout(timerId);
+                        timerId = setTimeout(() => {
+                            // 用apply绑定this为context（即触发事件的元素），传递参数params
+                            func.apply(context, params);
+                        }, wait);
+                    };
+                }
+        
+                // 用防抖包装处理函数，延迟1000ms
+                const debouncedClick = debounce(handleClick, 1000);
+        
+                // 绑定按钮点击事件
+                const btn = document.getElementById('btn');
+                btn.addEventListener('click', debouncedClick);
+         */
+        const btn = document.getElementById('btn')
+       
+        const debounceButton = debounce(output, 1000)
+
+        btn.addEventListener('click', debounceButton)
+
+        function output(e) {
+            console.log(this)
+            console.log(e)
+        }
+       
+
+        function debounce(func, waitTime) {
+            let waitEventId = null
+            return function (...args) {
+                if (waitEventId) {
+                    clearTimeout(waitEventId)
+                }
+
+                const this1 = this
+                const args1 = args
+
+                waitEventId = setTimeout(() => {
+                    func.apply(this1, args1)
+                }, waitTime)
+            }
+        }
+    </script>
+</body>
+
+</html>

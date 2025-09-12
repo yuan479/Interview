@@ -1,0 +1,92 @@
+<!-- 基础防抖 -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" id="searchInput" placeholder="基础防抖+输入框...">
+
+    <script>
+        const inputEvent = document.getElementById('searchInput')
+
+        const debounceSearch = debounce(output, 1000)
+
+        inputEvent.addEventListener('input', function (e) {
+            debounceSearch(e.target.value)
+        })
+
+        function output(value) {
+            console.log(`${value}`)
+        }
+
+        function debounce(func, waitTime) {
+            let waitEventId = null
+
+            return function (...args) {
+                if (waitEventId) {
+                    clearTimeout(waitEventId)
+                }
+
+                waitEventId = setTimeout(() => {
+                    func.apply(this, args)
+                }, waitTime)
+            }
+        }
+
+        /*         const inputEvent = document.getElementById('searchInput')
+        
+                inputEvent.addEventListener('input', function (e) {
+                    debounceSearch(e.target.value)
+                })
+        
+                const debounceSearch = debounce(output, 1000)
+        
+                function output(value) {
+                    console.log(`${value}`)
+                }
+        
+                function debounce(func, waitTime) {
+                    let waitEventId = null
+        
+                    return function (...args) {
+                        if (waitEventId) {
+                            clearTimeout(waitEventId)
+                        }
+                        waitEventId = setTimeout(() => {
+                            func.apply(this, args)
+                        }, waitTime)
+                    }
+                } */
+        /*         const inputEvent = document.getElementById('searchInput')
+        
+                inputEvent.addEventListener('input', function (e) {
+                    debounceSearch(e.target.value)
+                })
+        
+                function output(value) {
+                    console.log(`${value}`)
+                }
+        
+                const debounceSearch = debounce(output, 1000)
+        
+                function debounce(func, waitTime) {
+                    let waitEventId = null
+                    return function (...args) {
+                        if (waitEventId) {
+                            clearTimeout(waitEventId)
+                        }
+                        waitEventId = setTimeout(() => {
+                            func.apply(this, args)
+                        }, waitTime)
+                    }
+                } */
+
+    </script>
+</body>
+
+</html>

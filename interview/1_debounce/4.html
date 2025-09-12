@@ -1,0 +1,70 @@
+<!-- 一定时间只能执行一次 -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="btn">点击我</button>
+
+    <script>
+        /*         // 防抖函数：新增immediate参数（默认false）
+                function debounce(func, wait, immediate = false) {
+                    let timerId = null;
+        
+                    return function (...args) {
+                        const context = this;
+                        const params = args;
+        
+                        // 清除之前的定时器
+                        if (timerId) clearTimeout(timerId);
+        
+                        // 立即执行逻辑：第一次触发且immediate为true时，直接执行
+                        if (immediate && !timerId) {
+                            func.apply(context, params);
+                        }
+        
+                        // 重置定时器：如果是立即执行，这里的定时器用于“锁定”后续触发（1秒内不执行）
+                        timerId = setTimeout(() => {
+                            // 非立即执行：延迟后执行（如果immediate为false，这里才会执行）
+                            if (!immediate) {
+                                func.apply(context, params);
+                            }
+                            // 定时器执行后，重置timerId（允许下次触发重新判断）
+                            timerId = null;                                                                                     
+                        }, wait);
+                    };
+                }
+        
+                // 测试：立即执行模式（按钮点击）
+                const btn = document.getElementById('btn');
+                // 立即执行：第一次点击立即触发，1秒内再点不触发，1秒后恢复
+                btn.addEventListener('click', debounce(() => {
+                    console.log('按钮点击（立即执行）');
+                }, 1000, true)); */
+                
+        const btn = document.getElementById('btn')
+
+        btn.addEventListener('click', debounce(() => {
+            console.log(`死刑！立即执行`)
+        }), 1000, true)
+
+        function debounce(func, waitTime, isFirst = false) {
+            let waitEventId = null
+            return function (...args) {
+                if (waitEventId) {
+                    clearTimeout(waitEventId)
+                }
+                if (!waitEventId && isFirst){
+                    
+                }
+                    }
+        }
+    </script>
+</body>
+
+</html>
