@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>前端逐字流式输出（AI聊天模拟）</title>
+    <style>
+        #chatBox {
+            padding: 15px;
+            border: 1px solid #eee;
+            border-radius: 4px;
+            width: 500px;
+            min-height: 100px;
+            margin-top: 20px;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        button {
+            padding: 8px 16px;
+            cursor: pointer;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+        button:disabled {
+            background: #94a3b8;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <button id="Btn">开始AI逐字回答</button>
+    <div id="chatBox">AI：</div>
+
+    <script>
+        // 获取页面元素
+        const Btn = document.getElementById('Btn');
+        const chatBox = document.getElementById('chatBox');
+
+        // 绑定按钮点击事件
+        Btn.addEventListener('click', async () => {
+            // 清空之前的内容
+            chatBox.innerHTML = 'AI：';
+            // 禁用按钮防止重复点击
+            Btn.disabled = true;
+
+            // 要输出的完整文本
+            const fullText = '你好！我是模拟的AI流式回答。这是最后一段内容～ 逐字输出是不是更像真实的聊天体验呢？';
+            
+            // 创建可读流，逐字输出
+            const aiStream = new ReadableStream({
+                start(controller) {
+                    // 将文本拆分成单个字符数组
+                    const chars = fullText.split('');
+                    let index = 0; // 当前字符索引
+
+                    // 定时输出每个字符
+                    const timer = setInterval(() => {
+                        // 如果还有字符没输出
+                        if (index < chars.length) {
+                            // 将当前字符加入流中
+                            controller.enqueue(chars[index]);
+                            index++;
+                        } else {
+                            // 所有字符输出完毕，关闭流
+                            controller.close();
+                            clearInterval(timer); // 清除定时器
+                        }
+                    }, 50); // 每个字符间隔50ms，数值越小速度越快
+                }
+            });
+
+            // 读取流并显示到页面
+            const reader = aiStream.getReader();
+            while (true) {
+                const { done, value } = await reader.read();
+                
+                // 流结束时退出循环
+                if (done) {
+                    Btn.disabled = false; // 恢复按钮可用
+                    break;
+                }
+                
+                // 逐个字符追加到聊天框
+                chatBox.innerHTML += value;
+            }
+        });
+    </script>
+</body>
+</html>
