@@ -10,7 +10,7 @@
 ```jsx
 import React, { useRef, useEffect } from 'react';
 
-function RefDOMDemo() {
+const UseRef_1 = () => {
   // 1. 创建 useRef 实例，初始值为 null（用于存储输入框 DOM 元素）
   // 文档对应：useRef(initialValue) 创建一个 ref 对象，current 属性初始为 initialValue
   const inputRef = useRef(null);
@@ -62,7 +62,7 @@ function RefDOMDemo() {
   );
 }
 
-export default RefDOMDemo;
+export default UseRef_1;
 ```
 代码逐句解释
 const inputRef = useRef(null)：
