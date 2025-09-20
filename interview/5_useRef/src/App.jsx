@@ -2,6 +2,7 @@ import { useState } from 'react'
 import './App.css'
 import UseRef_1 from './components/1.jsx'
 import UseRef_2 from './components/2.jsx'
+import UseRef_3 from './components/3.jsx'
 
 function App() {
 
@@ -9,6 +10,7 @@ function App() {
     <>
       <UseRef_1 />
       <UseRef_2 />
+      <UseRef_3 />
     </>
   )
 }

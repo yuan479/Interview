@@ -25,6 +25,7 @@ const UseRef_1 = () => {
             <input type="text" ref={refInput} />
             <button onClick={focus}>再次聚焦输入框</button>
             <button onClick={sending}>控制台打印</button>
+            <hr/>
         </>
     )
 }

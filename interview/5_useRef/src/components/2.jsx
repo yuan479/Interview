@@ -30,6 +30,7 @@ const UseRef_2 =()=>{
            <button onClick={insert1}> + 1</button>
            <button onClick={startTimer}>启动计时器</button>
            <button onClick={stopTimer}>停止计时器</button>
+           <hr />
         </>
     )
 }

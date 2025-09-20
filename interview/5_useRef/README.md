@@ -105,7 +105,7 @@ function RefMutableValueDemo() {
 
   // 4. 启动定时器：每 1 秒自动加 1
   const handleStartTimer = () => {
-    // 避免重复启动：若 timerRef.current 不为 null，说明已有活跃定时器
+    // 避免重复启动：若 timerRef.current 为 null，说明没有定时器
     if (!timerRef.current) {
       // 启动定时器，将定时器 ID 存入 timerRef.current
       timerRef.current = setInterval(() => {
